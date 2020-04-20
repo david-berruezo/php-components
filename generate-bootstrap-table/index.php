@@ -1,4 +1,39 @@
-<?php require 'class.BootstrapTable.php'; ?>
+<?php 
+// table class
+require 'class.BootstrapTable.php'; 
+
+// build table
+function build_table(){
+    // Fake data
+    $vector_columns = array("Languages","IDEs","Browsers","OSs"); 
+    $vector_rows = array();
+
+    $row = array("PHP","NetBeans","FireFox","Windows");
+    array_push($vector_rows,$row);
+
+    $row = array("PHP","Visual studio code","FireFox","Windows");
+    array_push($vector_rows,$row);
+
+    $row = array("PHP","Php eclipse","FireFox","Windows");
+    array_push($vector_rows,$row);
+
+    $row = array("PHP","Sublime","FireFox","Windows");
+    array_push($vector_rows,$row);
+
+    // instanciate table
+    $table = new BootstrapTableHelper();
+    $table->bordered();
+    $table->striped();
+    $table->hover();
+    $table->columns($vector_columns);
+    foreach($vector_rows as $my_row){
+        $table->addRow($my_row);    
+    }
+    $my_table  = $table->make();
+    return $my_table;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,32 +58,8 @@
     <div class="col-md-12">
         <h3>Bootstrap PHP table</h3>
         <br>
-        <?php 
-        $table = new BootstrapTableHelper();
-        $table->bordered();
-        $table->striped();
-        $table->hover();
-        $table->columns(array("Languages","IDEs","Browsers","OSs"));
-        $table->addRow(array("PHP","NetBeans","FireFox","Windows"),"activ");
-        $table->addRow(array("PHP","NetBeans","FireFox","Windows"),"");
-        $table->addRow(array("PHP","NetBeans","FireFox","Windows"),"success");
-        $table->addRow(array("PHP","NetBeans","FireFox","Windows"));
-        $table->addRow(array("Java","Visual Studio","Chrome","Linux"),"warning");
-        $table->addRow(array("Java","Visual Studio","Chrome","Linux"));
-        $table->addRow(array("Java","Visual Studio","Chrome","Linux"),"danger");
-        $table->addRow(array("Java","Visual Studio","Chrome","Linux"),"");
-        $table->addRow(array("C++","Ecllips","Internet Explorer","Mac OS"),"info");
-        $table->addRow(array("C++","Ecllips","Internet Explorer","Mac OS"),"");
-        $table->addRow(array("C++","Ecllips","Internet Explorer","Mac OS"),"danger");
-        $table->addRow(array("C++","Ecllips","Internet Explorer","Mac OS"),"");
-        echo $table->make();
-        ?>    
+        <?php echo build_table();?>    
     </div>
 </div>    
 </body>
 </html>
-
-
-
- 
-
