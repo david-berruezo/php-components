@@ -131,7 +131,6 @@ class BootstrapTableHelper{
     * @return string Returns HTML Code of table
     */
     public function make(){
-        print_r($this->attributes);
         // start columns
         $columns = "<thead><tr>";
         foreach($this->columns as $col){
